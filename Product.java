@@ -18,11 +18,11 @@ public abstract class Product implements IPrintable
     };
 
     /*Members*/
-    String  id;
-    String  name;
-    String  code;
-    Type    type;
-    int     price;
+    private String  id;
+    private String  name;
+    private String  code;
+    private Type    type;
+    private int     price;
 
     /*Get methods*/
     public String   getID() { return id; }

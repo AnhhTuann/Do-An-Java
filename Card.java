@@ -6,8 +6,8 @@ public class Card extends Product
     }
 
     /*Members*/
-    String  serialNumber;
-    int     value;
+    private String  serialNumber;
+    private int     value;
 
     /*Get methods*/
     public String   getSerialNumber() { return serialNumber; }

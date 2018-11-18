@@ -26,10 +26,10 @@ public class Game extends Product
     }
 
     /*Members*/
-    int releasedYear;
-    Genre genre;
-    Platform platform;
-    String version;
+    private int releasedYear;
+    private Genre genre;
+    private Platform platform;
+    private String version;
 
     /*Get methods*/
     public int getReleasedYear() { return releasedYear; }
