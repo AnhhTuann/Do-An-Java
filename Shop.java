@@ -4,13 +4,17 @@ public class Shop
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        ProductList<Game> list = new ProductList<Game>();
+        GameList gameList = new GameList();
+        CardList cardList = new CardList();
 
-        list.addProduct("001", 1);
-        list.addProduct("002", 1);
-        list.addProduct("001", 1);
+        gameList.addProduct("001", 1);
+        gameList.addProduct("002", 1);
+        gameList.addProduct("001", 1);
+        cardList.addProduct("005", 1);
+        cardList.addProduct("005", 3);
 
-        System.out.print(list.toString());
+        System.out.print(gameList.toString());
+        System.out.print(cardList.toString());
 
         scanner.close();
     }

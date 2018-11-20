@@ -38,6 +38,7 @@ public class Card extends Product
 
         System.out.print("Input value: ");
         setValue(Shop.scanner.nextInt());
+        Shop.scanner.nextLine();
     }
 
     @Override

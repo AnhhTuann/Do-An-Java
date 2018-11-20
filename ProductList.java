@@ -1,13 +1,7 @@
 import java.util.LinkedList;
 
-public class ProductList<T extends Product> implements IPrintable
+public abstract class ProductList<T extends Product> implements IPrintable
 {
-    /*Constructor*/
-    public ProductList()
-    {
-        list = new LinkedList<T>();
-    }
-
     /*Member*/
     protected LinkedList<T> list;
 
@@ -51,30 +45,7 @@ public class ProductList<T extends Product> implements IPrintable
     /*Set methods*/
 
     /*Other methods*/
-    public void addProduct(String id, int quantity)
-    {
-        int index = findProduct(id);
-        if (index == -1)
-        {
-            System.out.println("This is new ID!");
-            T newProduct = new T(id);
-            list.add(newProduct);
-            for (int i = 0; i < quantity - 1; ++i)
-            {
-                T product = new T(newProduct);
-                list.add(product);
-            }
-        }
-        else
-        {
-            T existProduct = getProduct(id);
-            for (int i = 0; i < quantity; ++i)
-            {
-                T product = new T(existProduct);
-                list.add(product);
-            }
-        }
-    }
+    public abstract void addProduct(String id, int quantity);
 
     public void removeProduct(String id) {
         int index = findProduct(id);
