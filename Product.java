@@ -10,6 +10,20 @@ public abstract class Product implements IPrintable
         createProductInfo(); 
     }
 
+    public Product(Product product) {
+        id = new String("");
+        name = new String("");
+        code = new String("");
+
+        setID(product.getID());
+        setName(product.getName());
+        setPrice(product.getPrice());
+        setType(product.getType());
+
+        System.out.print("Input activation code: ");
+        setCode(Shop.scanner.nextLine());
+    }
+
     /*Inner objects*/
     public enum Type
     {

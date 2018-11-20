@@ -1,8 +1,19 @@
 public class Game extends Product
 {
     /*Constructor*/
-    Game(String id){
+    Game(String id) {
         super(id, Product.Type.Game);
+    }
+
+    Game(Game game) {
+        super(game);
+
+        this.version = new String("");
+
+        setGenre(game.getGenre());
+        setPlatform(game.getPlatform());
+        setReleasedYear(game.getReleasedYear());
+        setVersion(game.getVersion());
     }
 
     /*Inner objects*/
@@ -44,6 +55,7 @@ public class Game extends Product
     public void setVersion(String version) { this.version = version; }
 
     /*Other methods*/
+    @Override
     public void createProductDetails()
     {
         int check = 0;
@@ -111,10 +123,13 @@ public class Game extends Product
         setReleasedYear(Shop.scanner.nextInt());
         Shop.scanner.nextLine();
 
+        this.version = new String("");
+
         System.out.print("Input version: ");
         setVersion(Shop.scanner.nextLine());
     }
 
+    @Override
     public String toString()
     {
         String str = new String("");

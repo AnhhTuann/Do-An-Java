@@ -5,6 +5,16 @@ public class Card extends Product
         super(id, Product.Type.Card);
     }
 
+    public Card(Card card) {
+        super(card);
+        setValue(card.getValue());
+
+        serialNumber = new String("");
+
+        System.out.print("Input serial number: ");
+        setSerialNumber(Shop.scanner.nextLine());
+    }
+
     /*Members*/
     private String  serialNumber;
     private int     value;
@@ -18,8 +28,11 @@ public class Card extends Product
     public void setValue(int value) { this.value = value; }
 
     /*Other methods*/
+    @Override
     public void createProductDetails()
     {
+        serialNumber = new String("");
+
         System.out.print("Input serial number: ");
         setSerialNumber(Shop.scanner.nextLine());
 
@@ -27,6 +40,7 @@ public class Card extends Product
         setValue(Shop.scanner.nextInt());
     }
 
+    @Override
     public String toString()
     {
         String str = new String("");
