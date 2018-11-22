@@ -134,7 +134,7 @@ public class Game extends Product
     public String toString()
     {
         String str = new String("");
-        str += super.toString() + String.format("%-5s|%-20s|%-10s|%-5s|%n", getReleasedYear(), getGenre().toString(), getPlatform().toString(), getVersion());
+        str += super.toString() + String.format("%-5s|%-20s|%-10s|%-10s|%n", getReleasedYear(), getGenre().toString(), getPlatform().toString(), getVersion());
         return str;
     }
 }

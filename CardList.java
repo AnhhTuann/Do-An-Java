@@ -40,4 +40,19 @@ public class CardList extends ProductList<Card>
             }
         }
     }
+
+    @Override
+    public String toString(){
+        String str = new String("");
+        str += "\n**Card List**\n--------------------";
+        str += String.format("%n|%-10s|%-20s|%-20s|%-8s|%-10s|%-20s|%-10s|%n", 
+                             "ID", "Name", "Publisher", "Type", "Price", "Serial number", "Value");
+        str += "--------------------\n";
+        for (Card product : list)
+        {
+            str += product.toString();
+        }
+
+        return str;
+    }
 }

@@ -39,4 +39,19 @@ public class GameList extends ProductList<Game>
             }
         }
     }
+
+    @Override
+    public String toString(){
+        String str = new String("");
+        str += "\n**Game List**\n--------------------";
+        str += String.format("%n|%-10s|%-20s|%-20s|%-5s|%-10s|%-5s|%-20s|%-10s|%-10s|%n",  
+                             "ID", "Name", "Publisher", "Type", "Price", "Year", "Genre", "Platform", "Version");
+        str += "--------------------\n";
+        for (Game product : list)
+        {
+            str += product.toString();
+        }
+
+        return str;
+    }
 }

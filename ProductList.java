@@ -47,6 +47,7 @@ public abstract class ProductList<T extends Product> implements IPrintable
 
     /*Other methods*/
     public abstract void addProduct(String id, int quantity);
+    public abstract String toString();
 
     public void removeProduct(String id) {
         int index = findProduct(id);
@@ -67,17 +68,6 @@ public abstract class ProductList<T extends Product> implements IPrintable
                 return list.indexOf(product);
 
         return -1;
-    }
-
-    public String toString(){
-        String str = new String("");
-        str += "***** PRODUCTS *****\n";
-        for (T product : list)
-        {
-            str += product.toString();
-        }
-
-        return str;
     }
 
     protected boolean checkPublisherList(Product product) {
