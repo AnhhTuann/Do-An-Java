@@ -18,6 +18,17 @@ public class MainMenuState implements State<Shop>
 
     /*Other methods*/
     public void enter(Shop owner) {
+        System.out.print("\n+++++ WELCOME TO OUR SHOP +++++\n");
+        System.out.print("\n=== Choose the option ===\n1. Customer\n2. Staff\nInput: ");
+    }
 
+    public void execute(Shop owner) {
+        switch(owner.scanner.nextInt())
+        {
+            case 1:
+                
+            case 2:
+            case 3:
+        }
     }
 }
