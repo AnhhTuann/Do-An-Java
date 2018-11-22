@@ -78,11 +78,7 @@ public abstract class Product implements IPrintable
     public String toString()
     {
         String str = new String("");
-        str += "ID: " + getID() + "\n" +
-               "Name: " + getName() + "\n" + 
-               "Publisher: " + getPublisher() + "\n" +
-               "Type: " + getType().toString() + "\n" +
-               "Price: " + getPrice() + "\n";
+        str += String.format("|%-10s|%-20s|%-20s|%-8s|%-10s|", getID(), getName(), getPublisher(), getType().toString(), getPrice());
         return str;
     }
 }
