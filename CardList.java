@@ -3,8 +3,9 @@ import java.util.LinkedList;
 public class CardList extends ProductList<Card>
 {
     /*Constructor*/
-    public CardList() {
+    public CardList(PublisherList publisherList) {
         list = new LinkedList<Card>();
+        this.publisherList = publisherList;
     }
 
     /*Other methods*/
@@ -15,6 +16,13 @@ public class CardList extends ProductList<Card>
         {
             System.out.println("This is new ID!");
             Card newProduct = new Card(id);
+
+            if (!checkPublisherList(newProduct))
+            {
+                System.out.println("Failed! Invalid information!");
+                return;
+            }
+            
             list.add(newProduct);
             for (int i = 0; i < quantity - 1; ++i)
             {

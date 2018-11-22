@@ -3,7 +3,10 @@ import java.util.LinkedList;
 public class PublisherList
 {
     /*Constructor*/
-
+    PublisherList() {
+        list = new LinkedList<Publisher>();
+    }
+    
     /*Members*/
     LinkedList<Publisher> list;
 

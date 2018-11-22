@@ -3,8 +3,9 @@ import java.util.LinkedList;
 public class GameList extends ProductList<Game>
 {
     /*Constructor*/
-    public GameList() {
+    public GameList(PublisherList publisherList) {
         list = new LinkedList<Game>();
+        this.publisherList = publisherList;
     }
     /*Other methods*/
     @Override
@@ -14,6 +15,13 @@ public class GameList extends ProductList<Game>
         {
             System.out.println("This is new ID!");
             Game newProduct = new Game(id);
+
+            if (!checkPublisherList(newProduct))
+            {
+                System.out.println("Failed! Invalid information!");
+                return;
+            }
+
             list.add(newProduct);
             for (int i = 0; i < quantity - 1; ++i)
             {

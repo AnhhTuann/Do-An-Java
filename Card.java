@@ -8,6 +8,7 @@ public class Card extends Product
     public Card(Card card) {
         super(card);
         setValue(card.getValue());
+        setPublisher(card.getPublisher());
 
         serialNumber = new String("");
 

@@ -37,6 +37,7 @@ public abstract class Product implements IPrintable
     private String  code;
     private Type    type;
     private int     price;
+    private String  publisher;
 
     /*Get methods*/
     public String   getID() { return id; }
@@ -44,6 +45,7 @@ public abstract class Product implements IPrintable
     public String   getCode() { return code; }
     public Type     getType() { return type; }
     public int      getPrice() { return price; }
+    public String   getPublisher() { return publisher; }
 
     /*Set methods*/
     public void     setID(String id) { this.id = id; }
@@ -51,6 +53,7 @@ public abstract class Product implements IPrintable
     public void     setCode(String code) { this.code = code; }
     public void     setType(Type type) { this.type = type; }
     public void     setPrice(int price) { this.price = price; }
+    public void     setPublisher(String name) { publisher = name; }
 
     /*Other methods*/
     public abstract void createProductDetails();
@@ -58,6 +61,9 @@ public abstract class Product implements IPrintable
     public void createProductInfo() {
         System.out.print("Input product name: ");
         setName(Shop.scanner.nextLine());
+
+        System.out.print("Input publisher name: ");
+        setPublisher(Shop.scanner.nextLine());
 
         System.out.print("Input activation code: ");
         setCode(Shop.scanner.nextLine());
@@ -74,6 +80,7 @@ public abstract class Product implements IPrintable
         String str = new String("");
         str += "ID: " + getID() + "\n" +
                "Name: " + getName() + "\n" + 
+               "Publisher: " + getPublisher() + "\n" +
                "Type: " + getType().toString() + "\n" +
                "Price: " + getPrice() + "\n";
         return str;

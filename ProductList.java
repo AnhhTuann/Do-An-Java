@@ -4,6 +4,7 @@ public abstract class ProductList<T extends Product> implements IPrintable
 {
     /*Member*/
     protected LinkedList<T> list;
+    protected PublisherList publisherList;
 
     /*Get methods*/
     public T getProduct(String id)
@@ -77,5 +78,30 @@ public abstract class ProductList<T extends Product> implements IPrintable
         }
 
         return str;
+    }
+
+    protected boolean checkPublisherList(Product product) {
+        if (publisherList.findPublisher(product.getPublisher()) == -1) 
+        {
+            System.out.println("This is new publisher! Adding to the list!");
+            publisherList.addPublisher(product.getPublisher());
+            publisherList.getPublisher(product.getPublisher()).addTitle(product.getName());
+            return true;
+        }
+        else
+        {
+            Publisher publisher = publisherList.getPublisher(product.getPublisher());
+
+            if (publisher.findTitle(product.getName()) != -1)
+            {
+                System.out.println("This product is already exist! Re-check the ID!");
+                return false;
+            }
+            else
+            {
+                publisher.addTitle(product.getName());
+                return true;
+            }
+        }
     }
 }

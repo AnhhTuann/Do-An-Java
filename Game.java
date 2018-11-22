@@ -14,6 +14,7 @@ public class Game extends Product
         setPlatform(game.getPlatform());
         setReleasedYear(game.getReleasedYear());
         setVersion(game.getVersion());
+        setPublisher(game.getPublisher());
     }
 
     /*Inner objects*/

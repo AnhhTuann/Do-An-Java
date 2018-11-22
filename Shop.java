@@ -4,8 +4,9 @@ public class Shop
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        GameList gameList = new GameList();
-        CardList cardList = new CardList();
+        PublisherList publisher = new PublisherList();
+        GameList gameList = new GameList(publisher);
+        CardList cardList = new CardList(publisher);
 
         gameList.addProduct("001", 1);
         gameList.addProduct("002", 1);
