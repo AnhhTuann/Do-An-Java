@@ -1,6 +1,6 @@
-public interface State
+public interface State<T>
 {
-    public void enter(Shop owner);
-    public void execute(Shop owner);
-    public void exit(Shop owner);
+    public void enter(T owner);
+    public void execute(T owner);
+    public void exit(T owner);
 }

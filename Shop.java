@@ -6,7 +6,7 @@ public class Shop
         publisherList = new PublisherList();
         gameList = new GameList(publisherList);
         cardList = new CardList(publisherList);
-        stateMachine = new StateMachine(this);
+        stateMachine = new StateMachine<Shop>(this);
         stateMachine.setCurrentState(MainMenuState.getInstance());
         stateMachine.changeState(MainMenuState.getInstance());
         isExit = false;
@@ -16,7 +16,7 @@ public class Shop
     PublisherList publisherList;
     GameList gameList;
     CardList cardList;
-    StateMachine stateMachine;
+    StateMachine<Shop> stateMachine;
     boolean isExit;
 
     public static Scanner scanner = new Scanner(System.in);
@@ -25,7 +25,7 @@ public class Shop
     public GameList getGameList() { return gameList; }
     public CardList getCardList() { return cardList; }
     public PublisherList getPublisherList() { return publisherList; }
-    public StateMachine getStateMachine() { return stateMachine; }
+    public StateMachine<Shop> getStateMachine() { return stateMachine; }
 
     /*Set methods*/
         

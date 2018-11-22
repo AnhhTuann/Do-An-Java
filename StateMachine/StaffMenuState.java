@@ -1,4 +1,4 @@
-public class StaffMenuState implements State
+public class StaffMenuState implements State<Shop>
 {
     /*Constructor - Singleton*/
     private StaffMenuState() {}
