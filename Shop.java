@@ -1,12 +1,24 @@
 import java.util.Scanner;
 public class Shop
 {
+    /*Constructor*/
+    public Shop() {
+        publisherList = new PublisherList();
+        gameList = new GameList(publisherList);
+        cardList = new CardList(publisherList);
+    }
+    
+    /*Members*/
+    PublisherList publisherList;
+    GameList gameList;
+    CardList cardList;
+
     public static Scanner scanner = new Scanner(System.in);
 
+    /*Get methods*/
+    /*Set methods*/
+    /*Main method*/
     public static void main(String[] args) {
-        PublisherList publisher = new PublisherList();
-        GameList gameList = new GameList(publisher);
-        CardList cardList = new CardList(publisher);
 
         gameList.addProduct("001", 1);
         gameList.addProduct("002", 1);
@@ -19,4 +31,6 @@ public class Shop
 
         scanner.close();
     }
+    
+    /*Other methods*/
 }
