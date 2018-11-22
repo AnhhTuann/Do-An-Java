@@ -1,32 +1,32 @@
-public class StateMachine<T>
+public class StateMachine
 {
     /*Constructor*/
-    public StateMachine(T owner) {
+    public StateMachine(Shop owner) {
         this.owner = owner;
         currentState = null;
         previousState = null;
     }
 
     /*Members*/
-    private State<T> currentState;
-    private State<T> previousState;
-    private T owner;
+    private State currentState;
+    private State previousState;
+    private Shop owner;
 
     /*Get methods*/
-    public State<T> getCurrentState() { return currentState; }
-    public State<T> getPreviousState() { return previousState; }
+    public State getCurrentState() { return currentState; }
+    public State getPreviousState() { return previousState; }
 
     /*Set methods*/
-    public void setCurrentState(State<T> state) { currentState = state; }
-    public void setPreviousState(State<T> state) { previousState = state; }
+    public void setCurrentState(State state) { currentState = state; }
+    public void setPreviousState(State state) { previousState = state; }
 
     /*Other methods*/
     public void update() {
         if (currentState != null)
-            currentState.excute(owner);
+            currentState.execute(owner);
     }
 
-    public void changeState(State<T> state) {
+    public void changeState(State state) {
         if (state != null)
         {
             currentState.exit(owner);
