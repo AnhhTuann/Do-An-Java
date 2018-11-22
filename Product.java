@@ -25,7 +25,7 @@ public abstract class Product implements IPrintable
     }
 
     /*Inner objects*/
-    public enum Type
+    public static enum Type
     {
         Card,
         Game,
