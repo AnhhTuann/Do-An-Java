@@ -31,6 +31,7 @@ public class StaffMenuState implements State<Shop>
                 owner.getStateMachine().changeState(AddProductState.getInstance());
                 break;
             case 2:
+                owner.getStateMachine().changeState(RemoveProductState.getInstance());
                 break;
             case 3:
                 owner.getStateMachine().changeState(ViewListState.getInstance());
