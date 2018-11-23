@@ -31,7 +31,9 @@ public class RemoveProductState implements State<Shop>
                 Shop.scanner.nextLine();
                 System.out.print("\nGame chosen! Input ID: ");
                 String id = Shop.scanner.nextLine();
-                owner.getGameList().removeProduct(id);
+                System.out.print("How many products do you want to remove? ");
+                int quantity = Shop.scanner.nextInt();
+                owner.getGameList().removeProduct(id, quantity);
                 owner.getStateMachine().changeState(this);
                 break;
             }
@@ -40,7 +42,9 @@ public class RemoveProductState implements State<Shop>
                 Shop.scanner.nextLine();
                 System.out.print("\nCard chosen! Input ID: ");
                 String id = Shop.scanner.nextLine();
-                owner.getCardList().removeProduct(id);
+                System.out.print("How many products do you want to remove? ");
+                int quantity = Shop.scanner.nextInt();
+                owner.getCardList().removeProduct(id, quantity);
                 owner.getStateMachine().changeState(this);
                 break;
             }

@@ -49,7 +49,7 @@ public abstract class ProductList<T extends Product> implements IPrintable
     public abstract void addProduct(String id, int quantity);
     public abstract String toString();
 
-    public void removeProduct(String id) {
+    public void removeProduct(String id, int quantity) {
         int index = findProduct(id);
         if (index == -1)
         {
@@ -58,7 +58,31 @@ public abstract class ProductList<T extends Product> implements IPrintable
         }
         else
         {
-           list.remove(index);
+            for (int i = 0; i < quantity; ++i)
+            {
+                if (index == -1)
+                    break;
+                    
+                list.remove(index);
+                index = findProduct(id);
+            }
+        }
+    }
+
+    public void removeAllProduct(String id) {
+        int index = findProduct(id);
+        if (index == -1)
+        {
+            System.out.println("Failed: Cannot find ID!");
+            return;
+        }
+        else
+        {
+            while (index != -1)
+            {
+                list.remove(index);
+                index = findProduct(id);
+            }
         }
     }
 
