@@ -28,10 +28,13 @@ public class StaffMenuState implements State<Shop>
         switch(Shop.scanner.nextInt())
         {
             case 1:
+                owner.getStateMachine().changeState(AddProductState.getInstance());
                 break;
             case 2:
+                owner.getStateMachine().changeState(RemoveProductState.getInstance());
                 break;
             case 3:
+                owner.getStateMachine().changeState(ViewListState.getInstance());
                 break;
             case 4:
                 break;
