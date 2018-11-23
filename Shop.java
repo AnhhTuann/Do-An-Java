@@ -40,26 +40,12 @@ public class Shop
 
     /*Main method*/
     public static void main(String[] args) {
-<<<<<<< HEAD
-        PublisherList publisher = new PublisherList();
-        GameList gameList = new GameList(publisher);
-        CardList cardList = new CardList(publisher);
-
-        gameList.addProduct("001", 1);
-        gameList.addProduct("002", 1);
-        gameList.addProduct("001", 1);
-        cardList.addProduct("005", 1);
-
-        System.out.print(gameList.toString());
-        System.out.print(cardList.toString());
-=======
         Shop shop = new Shop();
 
         while(!shop.isExit())
         {
             shop.update();
         }
->>>>>>> state
 
         scanner.close();
     }
