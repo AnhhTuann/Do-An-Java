@@ -33,6 +33,7 @@ public class StaffMenuState implements State<Shop>
             case 2:
                 break;
             case 3:
+                owner.getStateMachine().changeState(ViewListState.getInstance());
                 break;
             case 4:
                 break;
