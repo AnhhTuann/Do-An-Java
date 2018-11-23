@@ -19,7 +19,7 @@ public class ViewListState implements State<Shop>
     /*Other methods*/
     @Override
     public void enter(Shop owner) {
-        System.out.print("\n--Which type of list do you want to add?\n1. Game List\n2. Card List\n3. Cancel\nInput: ");
+        System.out.print("\n--Which type of list do you want to view?\n1. Game List\n2. Card List\n3. Cancel\nInput: ");
     }
 
     @Override
