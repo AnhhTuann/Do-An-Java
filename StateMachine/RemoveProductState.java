@@ -28,23 +28,13 @@ public class RemoveProductState implements State<Shop>
         {
             case 1:
             {
-                Shop.scanner.nextLine();
-                System.out.print("\nGame chosen! Input ID: ");
-                String id = Shop.scanner.nextLine();
-                System.out.print("How many products do you want to remove? ");
-                int quantity = Shop.scanner.nextInt();
-                owner.getGameList().removeProduct(id, quantity);
+                removeProduct(owner.getGameList());
                 owner.getStateMachine().changeState(this);
                 break;
             }
             case 2:
             {
-                Shop.scanner.nextLine();
-                System.out.print("\nCard chosen! Input ID: ");
-                String id = Shop.scanner.nextLine();
-                System.out.print("How many products do you want to remove? ");
-                int quantity = Shop.scanner.nextInt();
-                owner.getCardList().removeProduct(id, quantity);
+                removeProduct(owner.getCardList());
                 owner.getStateMachine().changeState(this);
                 break;
             }
@@ -59,4 +49,27 @@ public class RemoveProductState implements State<Shop>
 
     @Override
     public void exit(Shop owner) {}
+
+    private void removeProduct(ProductList list) {
+        Shop.scanner.nextLine();
+        if (list.getClass().getName().equalsIgnoreCase("GameList"))
+        {
+            System.out.print("\nGame chosen! Input ID: ");
+        }
+        else
+        {
+            System.out.print("\nCard chosen! Input ID: ");
+        }
+        String id = Shop.scanner.nextLine();
+        System.out.print("How many products do you want to remove (type 'all' to remove all products)? ");
+        String quantity = Shop.scanner.nextLine();
+        if (quantity.equalsIgnoreCase("all"))
+        {
+            list.removeAllProduct(id);
+        }
+        else
+        {
+            list.removeProduct(id, Integer.parseInt(quantity));
+        }
+    }
 }
