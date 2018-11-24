@@ -42,8 +42,8 @@ public class GameList extends ProductList<Game>
 
     @Override
     public String toString(){
-        String str = new String("");
-        str += "\n**Game List**\n--------------------\n";
+        String str;
+        str = "\n**Game List**\n--------------------\n";
         str += String.format("|%-10s|%-20s|%-20s|%-5s|%-10s|%-5s|%-20s|%-10s|%-10s|",  
                              "ID", "Name", "Publisher", "Type", "Price", "Year", "Genre", "Platform", "Version");
         str += "\n--------------------\n";

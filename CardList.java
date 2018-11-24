@@ -43,8 +43,8 @@ public class CardList extends ProductList<Card>
 
     @Override
     public String toString(){
-        String str = new String("");
-        str += "\n**Card List**\n--------------------\n";
+        String str;
+        str = "\n**Card List**\n--------------------\n";
         str += String.format("|%-10s|%-20s|%-20s|%-5s|%-10s|%-20s|%-10s|", 
                              "ID", "Name", "Publisher", "Type", "Price", "Serial number", "Value");
         str += "\n--------------------\n";

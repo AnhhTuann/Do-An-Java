@@ -45,8 +45,8 @@ public class Card extends Product
     @Override
     public String toString()
     {
-        String str = new String("");
-        str += super.toString() + String.format("%-20s|%-10s|%n", getSerialNumber(), getValue());
+        String str;
+        str = super.toString() + String.format("%-20s|%-10s|%n", getSerialNumber(), getValue());
         return str;
     }
 }

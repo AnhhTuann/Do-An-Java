@@ -63,8 +63,8 @@ public class Publisher implements IPrintable
     }
 
     public String toString() {
-        String str = new String("");
-        str += "\n----------\n" + 
+        String str;
+        str = "\n----------\n" + 
                "Name: " + getName() + "\n" +
                "Title: ";
         
