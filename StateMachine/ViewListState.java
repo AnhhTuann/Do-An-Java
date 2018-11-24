@@ -29,13 +29,13 @@ public class ViewListState implements State<Shop>
             case 1:
             {
                 System.out.print("\n" + owner.getGameList().toString());
-                owner.getStateMachine().changeState(this);
+                enter(owner);
                 break;
             }
             case 2:
             {
                 System.out.print("\n" + owner.getCardList().toString());
-                owner.getStateMachine().changeState(this);
+                enter(owner);
                 break;
             }
             case 3:
