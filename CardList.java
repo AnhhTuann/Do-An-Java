@@ -77,13 +77,30 @@ public class CardList extends ProductList<Card>
                    + "xDATASEPARATEx";
 
         byte[] data = str.getBytes();
-        System.out.println(data);
 
         try {
             Files.write(Paths.get(path), data, StandardOpenOption.APPEND);
         }
         catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void rewriteFile() {
+        String path = ".\\data\\cardlist.bin";
+
+        try {
+            Files.delete(Paths.get(path));
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        
+        for (Card product : list)
+        {
+            writeToFile(product);
         }
     }
 

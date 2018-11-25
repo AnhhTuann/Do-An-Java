@@ -53,6 +53,8 @@ public abstract class ProductList<T extends Product> implements IPrintable, IFil
     public abstract void writeToFile(T product);
     @Override
     public abstract void readFromFile();
+    @Override
+    public abstract void rewriteFile();
 
     public void removeProduct(String id, int quantity) {
         int index = findProduct(id);
@@ -72,6 +74,8 @@ public abstract class ProductList<T extends Product> implements IPrintable, IFil
                 index = findProduct(id);
             }
         }
+
+        rewriteFile();
     }
 
     public void removeAllProduct(String id) {

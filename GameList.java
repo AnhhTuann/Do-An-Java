@@ -77,7 +77,6 @@ public class GameList extends ProductList<Game>
                    + "xDATASEPARATEx";
 
         byte[] data = str.getBytes();
-        System.out.println(data);
 
         try {
             Files.write(Paths.get(path), data, StandardOpenOption.APPEND);
@@ -85,6 +84,24 @@ public class GameList extends ProductList<Game>
         catch (IOException e) {
             e.printStackTrace();
         } 
+    }
+
+    @Override
+    public void rewriteFile() {
+        String path = ".\\data\\gamelist.bin";
+
+        try {
+            Files.delete(Paths.get(path));
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        
+        for (Game product : list)
+        {
+            writeToFile(product);
+        }
     }
 
     @Override
