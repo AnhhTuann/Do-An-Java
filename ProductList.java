@@ -1,6 +1,7 @@
+import java.io.IOException;
 import java.util.LinkedList;
 
-public abstract class ProductList<T extends Product> implements IPrintable
+public abstract class ProductList<T extends Product> implements IPrintable, IFileIO<T>
 {
     /*Member*/
     protected LinkedList<T> list;
@@ -48,6 +49,9 @@ public abstract class ProductList<T extends Product> implements IPrintable
     /*Other methods*/
     public abstract void addProduct(String id, int quantity);
     public abstract String toString();
+
+    @Override
+    public abstract void writeToFile(T product);
 
     public void removeProduct(String id, int quantity) {
         int index = findProduct(id);

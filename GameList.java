@@ -1,4 +1,6 @@
 import java.util.LinkedList;
+import java.io.IOException;
+import java.nio.file.*;
 
 public class GameList extends ProductList<Game>
 {
@@ -23,10 +25,12 @@ public class GameList extends ProductList<Game>
             }
 
             list.add(newProduct);
+            writeToFile(newProduct);
             for (int i = 0; i < quantity - 1; ++i)
             {
                 Game product = new Game(newProduct);
                 list.add(product);
+                writeToFile(product);
             }
         }
         else
@@ -36,6 +40,7 @@ public class GameList extends ProductList<Game>
             {
                 Game product = new Game(existProduct);
                 list.add(product);
+                writeToFile(product);
             }
         }
     }
@@ -53,5 +58,32 @@ public class GameList extends ProductList<Game>
         }
 
         return str;
+    }
+
+    @Override
+    public void writeToFile(Game product) {
+        String path = ".\\data\\gamelist.bin";
+
+        IFileIO.checkFileExist(path);
+
+        String str = product.getID() + " " 
+                   + product.getName() + " " 
+                   + product.getPublisher() + " " 
+                   + product.getPrice() + " " 
+                   + product.getReleasedYear() + " "
+                   + product.getGenre().toString() + " "
+                   + product.getPlatform().toString() + " " 
+                   + product.getVersion()
+                   + "xDATASEPARATEx";
+
+        byte[] data = str.getBytes();
+        System.out.println(data);
+
+        try {
+            Files.write(Paths.get(path), data, StandardOpenOption.APPEND);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
