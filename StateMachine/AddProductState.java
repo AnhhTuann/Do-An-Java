@@ -57,7 +57,7 @@ public class AddProductState implements State<Shop>
                 break;
         }
     }
-
+    
     @Override
     public void exit(Shop owner) {}
 }

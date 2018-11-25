@@ -43,5 +43,7 @@ public class MainMenuState implements State<Shop>
     }
 
     @Override
-    public void exit(Shop owner) {}
+    public void exit(Shop owner) {
+        owner.getStateMachine().setPreviousState(this);
+    }
 }

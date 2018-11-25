@@ -43,7 +43,7 @@ public class StaffMenuState implements State<Shop>
             case 6:
                 break;
             case 7:
-                owner.getStateMachine().changeState(MainMenuState.getInstance());
+                owner.getStateMachine().revertToPreviousState();;
                 break;
             default:
                 System.out.print("Invalid option! Please input: ");
