@@ -11,6 +11,9 @@ public class Shop
         stateMachine.setCurrentState(MainMenuState.getInstance());
         stateMachine.changeState(MainMenuState.getInstance());
         isExit = false;
+
+        gameList.readFromFile();
+        cardList.readFromFile();
     }
     
     /*Members*/

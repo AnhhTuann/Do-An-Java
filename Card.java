@@ -1,6 +1,11 @@
 public class Card extends Product
 {
     /*Constructor*/
+    public Card() {
+        super(Product.Type.Card);
+        serialNumber = new String("");
+    }
+
     public Card(String id) {
         super(id, Product.Type.Card);
     }

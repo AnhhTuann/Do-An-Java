@@ -72,7 +72,8 @@ public class CardList extends ProductList<Card>
                    + product.getPublisher() + " " 
                    + product.getPrice() + " " 
                    + product.getSerialNumber() + " "
-                   + product.getValue()
+                   + product.getValue() + " "
+                   + product.getCode()
                    + "xDATASEPARATEx";
 
         byte[] data = str.getBytes();
@@ -80,6 +81,35 @@ public class CardList extends ProductList<Card>
 
         try {
             Files.write(Paths.get(path), data, StandardOpenOption.APPEND);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void readFromFile() {
+        String path = ".\\data\\cardlist.bin";
+        IFileIO.checkFileExist(path);
+        
+        try {
+            byte[] data = Files.readAllBytes(Paths.get(path));
+            String str = new String(data);
+            String[] info = str.split("xDATASEPARATEx");
+        
+            for (String s : info)
+            {
+                String[] details = s.split(" ");
+                Card card = new Card();
+                card.setID(details[0]);
+                card.setName(details[1]);
+                card.setPublisher(details[2]);
+                card.setPrice(Integer.parseInt(details[3]));
+                card.setSerialNumber(details[4]);
+                card.setValue(Integer.parseInt(details[5]));
+                card.setCode(details[6]);
+                list.add(card);
+            }
         }
         catch (IOException e) {
             e.printStackTrace();

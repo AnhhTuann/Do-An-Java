@@ -63,7 +63,6 @@ public class GameList extends ProductList<Game>
     @Override
     public void writeToFile(Game product) {
         String path = ".\\data\\gamelist.bin";
-
         IFileIO.checkFileExist(path);
 
         String str = product.getID() + " " 
@@ -73,7 +72,8 @@ public class GameList extends ProductList<Game>
                    + product.getReleasedYear() + " "
                    + product.getGenre().toString() + " "
                    + product.getPlatform().toString() + " " 
-                   + product.getVersion()
+                   + product.getVersion() + " "
+                   + product.getCode()
                    + "xDATASEPARATEx";
 
         byte[] data = str.getBytes();
@@ -81,6 +81,37 @@ public class GameList extends ProductList<Game>
 
         try {
             Files.write(Paths.get(path), data, StandardOpenOption.APPEND);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        } 
+    }
+
+    @Override
+    public void readFromFile() {
+        String path = ".\\data\\gamelist.bin";
+        IFileIO.checkFileExist(path);
+        
+        try {
+            byte[] data = Files.readAllBytes(Paths.get(path));
+            String str = new String(data);
+            String[] info = str.split("xDATASEPARATEx");
+        
+            for (String s : info)
+            {
+                String[] details = s.split(" ");
+                Game game = new Game();
+                game.setID(details[0]);
+                game.setName(details[1]);
+                game.setPublisher(details[2]);
+                game.setPrice(Integer.parseInt(details[3]));
+                game.setReleasedYear(Integer.parseInt(details[4]));
+                game.setGenre(Game.Genre.valueOf(details[5]));
+                game.setPlatform(Game.Platform.valueOf(details[6]));
+                game.setVersion(details[7]);
+                game.setCode(details[8]);
+                list.add(game);
+            }
         }
         catch (IOException e) {
             e.printStackTrace();

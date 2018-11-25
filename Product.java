@@ -1,10 +1,21 @@
 public abstract class Product implements IPrintable
 {
     /*Constructor*/
+    public Product(Product.Type type) {
+        this.id = new String("");
+        name = new String("");
+        code = new String("");
+        publisher = new String("");
+        
+        setType(type);
+    }
+
     public Product(String id, Product.Type type) { 
         this.id = new String("");
         name = new String("");
         code = new String("");
+        publisher = new String("");
+
         setID(id);
         setType(type);
         createProductInfo(); 
@@ -14,6 +25,7 @@ public abstract class Product implements IPrintable
         id = new String("");
         name = new String("");
         code = new String("");
+        publisher = new String("");
 
         setID(product.getID());
         setName(product.getName());

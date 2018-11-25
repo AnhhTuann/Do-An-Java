@@ -1,11 +1,16 @@
 public class Game extends Product
 {
     /*Constructor*/
-    Game(String id) {
+    public Game() {
+        super(Product.Type.Game);
+        this.version = new String("");
+    }
+
+    public Game(String id) {
         super(id, Product.Type.Game);
     }
 
-    Game(Game game) {
+    public Game(Game game) {
         super(game);
 
         this.version = new String("");
