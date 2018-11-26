@@ -54,4 +54,23 @@ public class Card extends Product
         str = super.toString() + String.format("%-20s|%-10s|%n", getSerialNumber(), getValue());
         return str;
     }
+
+    @Override 
+    public String toData() {
+        String str = super.toData(); 
+        str += getSerialNumber() + " "
+             + getValue() + " "
+             + getCode()
+             + "xDATASEPARATEx";
+        
+        return str;
+    }
+
+    @Override
+    public void getData(String[] str) {
+        super.getData(str);
+        setSerialNumber(str[4]);
+        setValue(Integer.parseInt(str[5]));
+        setCode(str[6]);
+    }
 }

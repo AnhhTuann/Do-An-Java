@@ -1,9 +1,22 @@
 import java.nio.file.Paths;
 import java.util.Scanner;
+import java.lang.NoSuchMethodException;
+import java.lang.SecurityException;
+import java.lang.InstantiationException;
+import java.lang.IllegalAccessException;
+import java.lang.IllegalArgumentException;
+import java.lang.reflect.InvocationTargetException;
+
 public class Shop
 {
     /*Constructor*/
-    public Shop() {
+    public Shop() throws NoSuchMethodException, 
+                         SecurityException, 
+                         InstantiationException,
+                         IllegalAccessException,
+                         IllegalArgumentException,
+                         InvocationTargetException 
+    {
         publisherList = new PublisherList();
         gameList = new GameList(publisherList);
         cardList = new CardList(publisherList);
@@ -11,9 +24,6 @@ public class Shop
         stateMachine.setCurrentState(MainMenuState.getInstance());
         stateMachine.changeState(MainMenuState.getInstance());
         isExit = false;
-
-        gameList.readFromFile();
-        cardList.readFromFile();
     }
     
     /*Members*/
@@ -43,7 +53,13 @@ public class Shop
     public boolean isExit() { return isExit; }
 
     /*Main method*/
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NoSuchMethodException, 
+                                                  SecurityException, 
+                                                  InstantiationException,
+                                                  IllegalAccessException,
+                                                  IllegalArgumentException,
+                                                  InvocationTargetException 
+    {
         Shop shop = new Shop();
 
         while(!shop.isExit())

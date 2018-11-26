@@ -142,4 +142,27 @@ public class Game extends Product
         str = super.toString() + String.format("%-5s|%-20s|%-10s|%-10s|%n", getReleasedYear(), getGenre().toString(), getPlatform().toString(), getVersion());
         return str;
     }
+
+    @Override
+    public String toData() {
+        String str = super.toData();
+        str += getReleasedYear() + " "
+             + getGenre().toString() + " "
+             + getPlatform().toString() + " " 
+             + getVersion() + " "
+             + getCode()
+             + "xDATASEPARATEx";
+            
+        return str;
+    }
+
+    @Override
+    public void getData(String[] str) {
+        super.getData(str);
+        setReleasedYear(Integer.parseInt(str[4]));
+        setGenre(Game.Genre.valueOf(str[5]));
+        setPlatform(Game.Platform.valueOf(str[6]));
+        setVersion(str[7]);
+        setCode(str[8]);
+    }
 }

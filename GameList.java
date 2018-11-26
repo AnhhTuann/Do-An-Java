@@ -1,14 +1,33 @@
 import java.util.LinkedList;
 import java.io.IOException;
-import java.nio.file.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.lang.NoSuchMethodException;
+import java.lang.SecurityException;
+import java.lang.InstantiationException;
+import java.lang.IllegalAccessException;
+import java.lang.IllegalArgumentException;
+import java.lang.reflect.InvocationTargetException;
 
 public class GameList extends ProductList<Game>
 {
     /*Constructor*/
-    public GameList(PublisherList publisherList) {
+    public GameList(PublisherList publisherList) throws NoSuchMethodException, 
+                                                        SecurityException, 
+                                                        InstantiationException,
+                                                        IllegalAccessException,
+                                                        IllegalArgumentException,
+                                                        InvocationTargetException 
+    {
+        path = ".\\data\\gamelist.bin";
+
         list = new LinkedList<Game>();
         this.publisherList = publisherList;
+
+        FileIO.readFromFile(list, path, Game.class);
     }
+
     /*Other methods*/
     @Override
     public void addProduct(String id, int quantity) {
@@ -25,12 +44,12 @@ public class GameList extends ProductList<Game>
             }
 
             list.add(newProduct);
-            writeToFile(newProduct);
+            FileIO.writeToFile(newProduct, path);
             for (int i = 0; i < quantity - 1; ++i)
             {
                 Game product = new Game(newProduct);
                 list.add(product);
-                writeToFile(product);
+                FileIO.writeToFile(product, path);
             }
         }
         else
@@ -40,7 +59,7 @@ public class GameList extends ProductList<Game>
             {
                 Game product = new Game(existProduct);
                 list.add(product);
-                writeToFile(product);
+                FileIO.writeToFile(product, path);
             }
         }
     }
@@ -58,80 +77,5 @@ public class GameList extends ProductList<Game>
         }
 
         return str;
-    }
-
-    @Override
-    public void writeToFile(Game product) {
-        String path = ".\\data\\gamelist.bin";
-        IFileIO.checkFileExist(path);
-
-        String str = product.getID() + " " 
-                   + product.getName() + " " 
-                   + product.getPublisher() + " " 
-                   + product.getPrice() + " " 
-                   + product.getReleasedYear() + " "
-                   + product.getGenre().toString() + " "
-                   + product.getPlatform().toString() + " " 
-                   + product.getVersion() + " "
-                   + product.getCode()
-                   + "xDATASEPARATEx";
-
-        byte[] data = str.getBytes();
-
-        try {
-            Files.write(Paths.get(path), data, StandardOpenOption.APPEND);
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        } 
-    }
-
-    @Override
-    public void rewriteFile() {
-        String path = ".\\data\\gamelist.bin";
-
-        try {
-            Files.delete(Paths.get(path));
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-        
-        for (Game product : list)
-        {
-            writeToFile(product);
-        }
-    }
-
-    @Override
-    public void readFromFile() {
-        String path = ".\\data\\gamelist.bin";
-        IFileIO.checkFileExist(path);
-        
-        try {
-            byte[] data = Files.readAllBytes(Paths.get(path));
-            String str = new String(data);
-            String[] info = str.split("xDATASEPARATEx");
-        
-            for (String s : info)
-            {
-                String[] details = s.split(" ");
-                Game game = new Game();
-                game.setID(details[0]);
-                game.setName(details[1]);
-                game.setPublisher(details[2]);
-                game.setPrice(Integer.parseInt(details[3]));
-                game.setReleasedYear(Integer.parseInt(details[4]));
-                game.setGenre(Game.Genre.valueOf(details[5]));
-                game.setPlatform(Game.Platform.valueOf(details[6]));
-                game.setVersion(details[7]);
-                game.setCode(details[8]);
-                list.add(game);
-            }
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

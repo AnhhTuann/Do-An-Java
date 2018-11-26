@@ -1,13 +1,31 @@
 import java.io.IOException;
 import java.util.LinkedList;
-import java.nio.file.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.lang.NoSuchMethodException;
+import java.lang.SecurityException;
+import java.lang.InstantiationException;
+import java.lang.IllegalAccessException;
+import java.lang.IllegalArgumentException;
+import java.lang.reflect.InvocationTargetException;
 
 public class CardList extends ProductList<Card>
 {
     /*Constructor*/
-    public CardList(PublisherList publisherList) {
+    public CardList(PublisherList publisherList) throws NoSuchMethodException, 
+                                                        SecurityException, 
+                                                        InstantiationException,
+                                                        IllegalAccessException,
+                                                        IllegalArgumentException,
+                                                        InvocationTargetException 
+    {
+        path = ".\\data\\cardlist.bin";
+
         list = new LinkedList<Card>();
         this.publisherList = publisherList;
+
+        FileIO.readFromFile(list, path, Card.class);
     }
 
     /*Other methods*/
@@ -26,12 +44,12 @@ public class CardList extends ProductList<Card>
             }
             
             list.add(newProduct);
-            writeToFile(newProduct);
+            FileIO.writeToFile(newProduct, path);
             for (int i = 0; i < quantity - 1; ++i)
             {
                 Card product = new Card(newProduct);
                 list.add(product);
-                writeToFile(product);
+                FileIO.writeToFile(product, path);
             }
         }
         else
@@ -41,7 +59,7 @@ public class CardList extends ProductList<Card>
             {
                 Card product = new Card(existProduct);
                 list.add(product);
-                writeToFile(product);
+                FileIO.writeToFile(product, path);
             }
         }
     }
@@ -59,77 +77,5 @@ public class CardList extends ProductList<Card>
         }
 
         return str;
-    }
-
-    @Override
-    public void writeToFile(Card product) {
-        String path = ".\\data\\cardlist.bin";
-
-        IFileIO.checkFileExist(path);
-
-        String str = product.getID() + " " 
-                   + product.getName() + " " 
-                   + product.getPublisher() + " " 
-                   + product.getPrice() + " " 
-                   + product.getSerialNumber() + " "
-                   + product.getValue() + " "
-                   + product.getCode()
-                   + "xDATASEPARATEx";
-
-        byte[] data = str.getBytes();
-
-        try {
-            Files.write(Paths.get(path), data, StandardOpenOption.APPEND);
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void rewriteFile() {
-        String path = ".\\data\\cardlist.bin";
-
-        try {
-            Files.delete(Paths.get(path));
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-        
-        for (Card product : list)
-        {
-            writeToFile(product);
-        }
-    }
-
-    @Override
-    public void readFromFile() {
-        String path = ".\\data\\cardlist.bin";
-        IFileIO.checkFileExist(path);
-        
-        try {
-            byte[] data = Files.readAllBytes(Paths.get(path));
-            String str = new String(data);
-            String[] info = str.split("xDATASEPARATEx");
-        
-            for (String s : info)
-            {
-                String[] details = s.split(" ");
-                Card card = new Card();
-                card.setID(details[0]);
-                card.setName(details[1]);
-                card.setPublisher(details[2]);
-                card.setPrice(Integer.parseInt(details[3]));
-                card.setSerialNumber(details[4]);
-                card.setValue(Integer.parseInt(details[5]));
-                card.setCode(details[6]);
-                list.add(card);
-            }
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

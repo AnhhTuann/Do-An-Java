@@ -1,11 +1,12 @@
 import java.io.IOException;
 import java.util.LinkedList;
 
-public abstract class ProductList<T extends Product> implements IPrintable, IFileIO<T>
+public abstract class ProductList<T extends Product> implements IPrintable
 {
     /*Member*/
     protected LinkedList<T> list;
     protected PublisherList publisherList;
+    public String path;
 
     /*Get methods*/
     public T getProduct(String id)
@@ -49,12 +50,6 @@ public abstract class ProductList<T extends Product> implements IPrintable, IFil
     /*Other methods*/
     public abstract void addProduct(String id, int quantity);
     public abstract String toString();
-    @Override
-    public abstract void writeToFile(T product);
-    @Override
-    public abstract void readFromFile();
-    @Override
-    public abstract void rewriteFile();
 
     public void removeProduct(String id, int quantity) {
         int index = findProduct(id);
@@ -75,7 +70,7 @@ public abstract class ProductList<T extends Product> implements IPrintable, IFil
             }
         }
 
-        rewriteFile();
+        FileIO.rewriteFile(list, path);
     }
 
     public void removeAllProduct(String id) {

@@ -1,4 +1,4 @@
-public abstract class Product implements IPrintable
+public abstract class Product implements IPrintable, IWritable
 {
     /*Constructor*/
     public Product(Product.Type type) {
@@ -92,5 +92,22 @@ public abstract class Product implements IPrintable
         String str;
         str = String.format("|%-10s|%-20s|%-20s|%-5s|%-10s|", getID(), getName(), getPublisher(), getType().toString(), getPrice());
         return str;
+    }
+
+    public String toData() {
+        String str = getID() + " " 
+                   + getName() + " " 
+                   + getPublisher() + " " 
+                   + getPrice() + " ";
+                   
+        return str;
+    }
+
+    @Override
+    public void getData(String[] str) {
+        setID(str[0]);
+        setName(str[1]);
+        setPublisher(str[2]);
+        setPrice(Integer.parseInt(str[3]));
     }
 }
