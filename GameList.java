@@ -1,24 +1,10 @@
 import java.util.LinkedList;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.lang.NoSuchMethodException;
-import java.lang.SecurityException;
-import java.lang.InstantiationException;
-import java.lang.IllegalAccessException;
-import java.lang.IllegalArgumentException;
-import java.lang.reflect.InvocationTargetException;
 
 public class GameList extends ProductList<Game>
 {
     /*Constructor*/
-    public GameList(PublisherList publisherList) throws NoSuchMethodException, 
-                                                        SecurityException, 
-                                                        InstantiationException,
-                                                        IllegalAccessException,
-                                                        IllegalArgumentException,
-                                                        InvocationTargetException 
+    public GameList(PublisherList publisherList)
     {
         path = ".\\data\\gamelist.bin";
 
@@ -29,41 +15,6 @@ public class GameList extends ProductList<Game>
     }
 
     /*Other methods*/
-    @Override
-    public void addProduct(String id, int quantity) {
-        int index = findProduct(id);
-        if (index == -1)
-        {
-            System.out.println("This is new ID!");
-            Game newProduct = new Game(id);
-
-            if (!checkPublisherList(newProduct))
-            {
-                System.out.println("Failed! Invalid information!");
-                return;
-            }
-
-            list.add(newProduct);
-            FileIO.writeToFile(newProduct, path);
-            for (int i = 0; i < quantity - 1; ++i)
-            {
-                Game product = new Game(newProduct);
-                list.add(product);
-                FileIO.writeToFile(product, path);
-            }
-        }
-        else
-        {
-            Game existProduct = getProduct(id);
-            for (int i = 0; i < quantity; ++i)
-            {
-                Game product = new Game(existProduct);
-                list.add(product);
-                FileIO.writeToFile(product, path);
-            }
-        }
-    }
-
     @Override
     public String toString(){
         String str;

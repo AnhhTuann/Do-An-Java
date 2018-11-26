@@ -40,12 +40,7 @@ public class FileIO
         }
     }
 
-    public static <T extends IWritable> void readFromFile(LinkedList<T> list, String path, Class<T> tclass) throws NoSuchMethodException, 
-                                                                                                                  SecurityException, 
-                                                                                                                  InstantiationException,
-                                                                                                                  IllegalAccessException,
-                                                                                                                  IllegalArgumentException,
-                                                                                                                  InvocationTargetException
+    public static <T extends IWritable> void readFromFile(LinkedList<T> list, String path, Class<T> tclass)
     {
         checkFileExist(path);
         
@@ -57,9 +52,16 @@ public class FileIO
             for (String s : info)
             {
                 String[] details = s.split(" ");
-                T object = (T)tclass.getDeclaredConstructor().newInstance();
-                object.getData(details);
-                list.add(object);
+                try
+                {
+                    T object = (T)tclass.getDeclaredConstructor().newInstance();
+                    object.getData(details);
+                    list.add(object);
+                }
+                catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException |InvocationTargetException e)
+                {
+                    e.printStackTrace();
+                }
             }
         }
         catch (IOException e) {

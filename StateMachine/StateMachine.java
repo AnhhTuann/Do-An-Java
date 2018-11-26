@@ -21,7 +21,8 @@ public class StateMachine<T>
     public void setPreviousState(State<T> state) { previousState = state; }
 
     /*Other methods*/
-    public void update() {
+    public void update()
+    {
         if (currentState != null)
             currentState.execute(owner);
     }

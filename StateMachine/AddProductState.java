@@ -33,7 +33,7 @@ public class AddProductState implements State<Shop>
                 System.out.print("How many products do you want to add? ");
                 int quantity = Shop.scanner.nextInt();
                 Shop.scanner.nextLine();
-                owner.getGameList().addProduct(id, quantity);
+                owner.getGameList().addProduct(id, quantity, Game.class);
                 owner.getStateMachine().changeState(this);
                 break;
             }
@@ -45,7 +45,7 @@ public class AddProductState implements State<Shop>
                 System.out.print("How many products do you want to add? ");
                 int quantity = Shop.scanner.nextInt();
                 Shop.scanner.nextLine();
-                owner.getCardList().addProduct(id, quantity);
+                owner.getCardList().addProduct(id, quantity, Card.class);
                 owner.getStateMachine().changeState(this);
                 break;
             }
